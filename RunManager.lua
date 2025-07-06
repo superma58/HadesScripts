@@ -484,6 +484,15 @@ function SetupRoomReward( currentRun, room, previouslyChosenRewards, args )
 		local lootData = ChooseLoot( excludeLootNames )
 		if not args.IgnoreForceLootName then
 			for k, trait in pairs( CurrentRun.Hero.Traits ) do
+				-- nma
+				local log = ''
+				if (trait ~= nil) then
+					log = "trait:" .. tostring(trait.Name) .. " ForceBoonName:" .. (tostring(trait.ForceBoonName) or "nil") .. ' uses: ' .. tostring(trait.Uses)
+				end
+				if (NmaLog and log) then
+					NmaLog(log)
+				end
+
 				if trait ~= nil and trait.ForceBoonName ~= nil and trait.Uses > 0 and not Contains(excludeLootNames, trait.ForceBoonName) then
 					lootData = { Name = trait.ForceBoonName }
 				end
@@ -1498,6 +1507,11 @@ function ChooseLoot( excludeLootNames, forceLootName )
 	else
 		local eligibleLootNames = GetEligibleLootNames( excludeLootNames )
 		newLootName = GetRandomValue( eligibleLootNames )
+
+		-- nma
+		if (OnChooseLoot) then
+			OnChooseLoot(eligibleLootNames, newLootName)
+		end
 	end
 
 	local newlootData = LootData[newLootName]
@@ -1622,6 +1636,29 @@ function ChooseRoomReward( run, room, rewardStoreName, previouslyChosenRewards, 
 	CollapseTable( run.RewardStores[rewardStoreName] )
 	room.RewardOverrides = reward.Overrides
 
+
+	-- TODO: nma
+	if args.reroll then
+		if reward.Name == 'RoomRewardMoneyDrop' or reward.Name == 'Boon' then
+			return "Boon"
+		end
+		if reward.Name == 'RoomRewardMaxHealthDrop' or reward.Name == 'StackUpgrade' or reward.Name == 'WeaponUpgrade'  then
+			rng = GetGlobalRng()
+			if rng ~= nil then
+				rng:Seed( math.floor(GetTime({}) * 1000000), 1)
+				local k = rng:Random(5)
+				if k < 4 then
+					return "Boon"
+				end
+			elseccc
+				return "Boon"
+			end
+		end
+	end
+	if (OnGetReward) then
+		OnGetReward(reward.Name)
+	end
+
 	return reward.Name
 
 end
@@ -1633,6 +1670,9 @@ function GetEligibleLootNames( excludeLootNames )
 	else
 		eligibleLootNames = OrderedKeysToList( LootData )
 	end
+
+	-- nma
+	-- OnChooseLoot(eligibleLootNames)
 
 	local output = {}
 	for i, lootName in pairs( eligibleLootNames ) do

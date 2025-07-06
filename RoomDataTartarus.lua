@@ -1725,7 +1725,8 @@ RoomSetData.Tartarus =
 		IntroSequenceDuration = 1.8,
 		NextRoomSet = { "Tartarus", },
 
-		BoonRaritiesOverride = { LegendaryChance = 1, EpicChance = 1, RareChance = 0.1 },
+        -- nma
+		BoonRaritiesOverride = { LegendaryChance = 0.5, EpicChance = 1, RareChance = 0.01 },
 
 		GameStateRequirements =
 		{

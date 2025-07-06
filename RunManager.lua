@@ -271,7 +271,8 @@ function StartNewRun( prevRun, args )
 	CurrentRun.BlockedEncounters = {}
 	CurrentRun.InvulnerableFlags = {}
 	CurrentRun.PhasingFlags = {}
-	CurrentRun.Money = CalculateStartingMoney()
+	-- nma
+	CurrentRun.Money = CalculateStartingMoney() + 200
 	CurrentRun.MoneySpent = 0
 	CurrentRun.MoneyRecord = {}
 	CurrentRun.BonusDarknessWeapon = GetRandomUnequippedWeapon()
@@ -280,7 +281,9 @@ function StartNewRun( prevRun, args )
 	CurrentRun.GameplayTime = 0
 	CurrentRun.BiomeTime = 0
 	CurrentRun.ActiveBiomeTimer = GetNumMetaUpgrades("BiomeSpeedShrineUpgrade") > 0
-	CurrentRun.NumRerolls = GetNumMetaUpgrades( "RerollMetaUpgrade" ) + GetNumMetaUpgrades("RerollPanelMetaUpgrade")
+	-- nma
+	CurrentRun.NumRerolls = GetNumMetaUpgrades( "RerollMetaUpgrade" ) + GetNumMetaUpgrades("RerollPanelMetaUpgrade") + 50
+
 	CurrentRun.ThanatosSpawns = 0
 	CurrentRun.SupportAINames = {}
 	CurrentRun.Hero.TargetMetaRewardsAdjustSpeed = 10.0
@@ -353,7 +356,9 @@ function ChooseStartingRoom( currentRun, roomSetName )
 		startingRoomData = GetRandomValue( eligibleRooms )
 	end
 
-	local startingRoom = CreateRoom( startingRoomData )
+	-- local startingRoom = CreateRoom( startingRoomData )
+	-- nma
+	local startingRoom = CreateRoom( startingRoomData, { startRoom = true } )
 	return startingRoom
 
 end
@@ -361,6 +366,15 @@ end
 function CreateRoom( roomData, args )
 	if args == nil then
 		args = {}
+	end
+
+	-- nma
+	local log = 'SkipEncounter: ' .. tostring(args.SkipChooseEncounter)
+	log = log .. ' RewardStoreName: ' .. tostring(args.RewardStoreName)
+	log = log .. ' SkipChooseReward: ' .. tostring(args.SkipChooseReward)
+	log = log .. ' FirstClearRewardStore: ' .. tostring(args.FirstClearRewardStore)
+	if (NmaLog and log) then
+		NmaLog(log)
 	end
 
 	local room = DeepCopyTable( roomData )
@@ -390,8 +404,16 @@ function CreateRoom( roomData, args )
 	end
 	if not args.SkipChooseReward then
 		room.RewardStoreName = args.RewardStoreName
-		room.ChosenRewardType = ChooseRoomReward( CurrentRun, room, args.RewardStoreName, args.PreviouslyChosenRewards )
-		SetupRoomReward( CurrentRun, room, args.PreviouslyChosenRewards )
+		-- room.ChosenRewardType = ChooseRoomReward( CurrentRun, room, args.RewardStoreName, args.PreviouslyChosenRewards )
+		-- SetupRoomReward( CurrentRun, room, args.PreviouslyChosenRewards )
+		-- nma
+		if (args.startRoom) then
+			room.ChosenRewardType = 'Boon'
+			SetupRoomReward( CurrentRun, room, nil )
+		else
+			room.ChosenRewardType = ChooseRoomReward( CurrentRun, room, args.RewardStoreName, args.PreviouslyChosenRewards )
+			SetupRoomReward( CurrentRun, room, args.PreviouslyChosenRewards )
+		end
 	end
 
 	local secretChance = room.SecretSpawnChance or RoomData.BaseRoom.SecretSpawnChance

@@ -282,7 +282,7 @@ function StartNewRun( prevRun, args )
 	CurrentRun.BiomeTime = 0
 	CurrentRun.ActiveBiomeTimer = GetNumMetaUpgrades("BiomeSpeedShrineUpgrade") > 0
 	-- nma
-	CurrentRun.NumRerolls = GetNumMetaUpgrades( "RerollMetaUpgrade" ) + GetNumMetaUpgrades("RerollPanelMetaUpgrade") + 50
+	CurrentRun.NumRerolls = GetNumMetaUpgrades( "RerollMetaUpgrade" ) + GetNumMetaUpgrades("RerollPanelMetaUpgrade") + 100
 
 	CurrentRun.ThanatosSpawns = 0
 	CurrentRun.SupportAINames = {}
@@ -1672,7 +1672,7 @@ function ChooseRoomReward( run, room, rewardStoreName, previouslyChosenRewards, 
 				if k < 4 then
 					return "Boon"
 				end
-			elseccc
+			else
 				return "Boon"
 			end
 		end

@@ -20040,11 +20040,23 @@ LootData =
 		PriorityUpgrades = {},
 		WeaponUpgrades = {},
 		Traits = {
-			"SwordTwoComboTrait", "SwordSecondaryAreaDamageTrait", "SwordHeavySecondStrikeTrait", "SwordThrustWaveTrait", "SwordSecondaryDoubleAttackTrait", "SwordHealthBufferDamageTrait", "SwordDoubleDashAttackTrait", "SwordCriticalTrait", "SwordBackstabTrait", "SwordCursedLifeStealTrait", "SwordGoldDamageTrait", "SwordBlinkTrait",
+			-- nma
+			-- "SwordTwoComboTrait", "SwordSecondaryAreaDamageTrait", "SwordHeavySecondStrikeTrait", "SwordThrustWaveTrait", "SwordSecondaryDoubleAttackTrait", "SwordHealthBufferDamageTrait", "SwordDoubleDashAttackTrait", "SwordCriticalTrait", "SwordBackstabTrait", "SwordCursedLifeStealTrait", "SwordGoldDamageTrait", "SwordBlinkTrait",
+			"SwordHeavySecondStrikeTrait", "SwordThrustWaveTrait", "SwordHealthBufferDamageTrait", "SwordDoubleDashAttackTrait", "SwordCriticalTrait", "SwordCursedLifeStealTrait",
+			
+
 			"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait",
 			"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowElectiveCharge", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait",
+			
+			-- nma
 			"SpearReachAttack", "SpearAutoAttack", "SpearThrowExplode", "SpearThrowBounce", "SpearThrowPenetrate", "SpearThrowCritical", "SpearSpinDamageRadius", "SpearSpinChargeLevelTime", "SpearDashMultiStrike", "SpearThrowElectiveCharge", "SpearSpinChargeAreaDamageTrait", "SpearAttackPhalanxTrait",
-			"GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait",
+			-- "SpearSpinDamageRadius", "SpearSpinChargeLevelTime",
+			
+			-- nma
+			-- "GunSlowGrenade", "GunMinigunTrait", "GunShotgunTrait", "GunExplodingSecondaryTrait", "GunGrenadeFastTrait", "GunArmorPenerationTrait", "GunInfiniteAmmoTrait", "GunGrenadeClusterTrait", "GunGrenadeDropTrait", "GunHeavyBulletTrait", "GunChainShotTrait", "GunHomingBulletTrait",
+			"GunMinigunTrait", "GunExplodingSecondaryTrait", "GunArmorPenerationTrait", "GunGrenadeClusterTrait", "GunHeavyBulletTrait", "GunHomingBulletTrait",
+			-- "GunExplodingSecondaryTrait", "GunArmorPenerationTrait", "GunGrenadeClusterTrait", "GunHomingBulletTrait",
+			
 			"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistChargeSpecialTrait", "FistKillTrait", "FistSpecialLandTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistSpecialFireballTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait",
 
 			"SpearSpinTravelDurationTrait", "SwordConsecrationBoostTrait", "BowBondBoostTrait", "ShieldLoadAmmoBoostTrait", "FistDetonateBoostTrait",
@@ -20937,7 +20949,7 @@ RewardStoreData =
 				RequiredMaxWeaponUpgrades = 1,
 				RequiredNotInStoreNames = { "ChaosWeaponUpgrade", "WeaponUpgradeDrop" },
 				RequiredMinCompletedRuns = 3,
-				RequiredMinDepth = 26,
+				RequiredMinDepth = 2,
 			}
 		},
 		{

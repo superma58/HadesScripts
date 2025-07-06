@@ -36,11 +36,15 @@ RoomSetData.Base =
 			RequiredUpgradeableGodTraits = 3,
 			RequiredMinRoomsSinceSellTraitShop = 6,
 		},
-		FishingPointChance = 0.10,
+		-- nma
+		-- FishingPointChance = 0.10,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 10,
+			-- nma
+			-- RequiredMinRoomsSinceFishingPoint = 10,
+			RequiredMinRoomsSinceFishingPoint = 3,
 		},
 		MinDepthBeforeIntros = 3,
 		LockedUseSound = "/Leftovers/World Sounds/Caravan Interior/ChestClose",

@@ -1725,6 +1725,8 @@ RoomSetData.Tartarus =
 		IntroSequenceDuration = 1.8,
 		NextRoomSet = { "Tartarus", },
 
+		BoonRaritiesOverride = { LegendaryChance = 1, EpicChance = 1, RareChance = 0.1 },
+
 		GameStateRequirements =
 		{
 			-- None
@@ -1754,14 +1756,15 @@ RoomSetData.Tartarus =
 					RequiredFalseTextLines = { "ZeusFirstPickUp", },
 				}
 			},
-			{
-				Name = "WeaponUpgrade",
-				GameStateRequirements =
-				{
-					RequiredTextLines = { "ZeusFirstPickUp", },
-					RequiredFalseLootPickup = "WeaponUpgrade",
-				}
-			},
+			-- TODO: nma
+			-- {
+			-- 	Name = "WeaponUpgrade",
+			-- 	GameStateRequirements =
+			-- 	{
+			-- 		RequiredTextLines = { "ZeusFirstPickUp", },
+			-- 		RequiredFalseLootPickup = "WeaponUpgrade",
+			-- 	}
+			-- },
 			{
 				Name = "Boon",
 				LootName = "AphroditeUpgrade",

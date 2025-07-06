@@ -48,6 +48,9 @@ Import "TraitTrayScripts.lua"
 Import "WeaponUpgradeScripts.lua"
 Import "BoonInfoScreenScripts.lua"
 
+-- nma
+Import "NmaLog.lua"
+
 -- Spawned Objects
 Using "BlackScreen"
 Using "BaseLoot"

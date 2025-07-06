@@ -51,11 +51,11 @@ RoomSetData.Tartarus =
 			RequiredUpgradeableGodTraits = 3,
 			RequiredMinRoomsSinceSellTraitShop = 6,
 		},
-		FishingPointChance = 0.25,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 10,
+			RequiredMinRoomsSinceFishingPoint = 1,
 		},
 		TrapOptions = EnemySets.TrapsBiome1,
 		UsePromptOffsetX = 20,

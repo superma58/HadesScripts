@@ -46,11 +46,11 @@ RoomSetData.Styx =
 			RequiredUpgradeableGodTraits = 3,
 			RequiredMinRoomsSinceSellTraitShop = 6,
 		},
-		FishingPointChance = 0.1,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 10,
+			RequiredMinRoomsSinceFishingPoint = 1,
 		},
 		StopSecretMusic = true,
 

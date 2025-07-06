@@ -22,11 +22,11 @@ RoomSetData.Surface =
 		
 		BlockHeroLight = true,
 
-		FishingPointChance = 0.2,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 2,
+			RequiredMinRoomsSinceFishingPoint = 1,
 
 			RequiredTextLines = { "PersephoneFirstMeeting" },
 		},

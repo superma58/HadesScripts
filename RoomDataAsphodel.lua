@@ -48,11 +48,11 @@ RoomSetData.Asphodel =
 			RequiredUpgradeableGodTraits = 3,
 			RequiredMinRoomsSinceSellTraitShop = 2,
 		},
-		FishingPointChance = 0.1,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 10,
+			RequiredMinRoomsSinceFishingPoint = 1,
 		},
 		TrapOptions = EnemySets.TrapsBiome2,
 		ExitDoorIconOffzetZ = 100,

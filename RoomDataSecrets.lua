@@ -30,11 +30,11 @@ RoomSetData.Secrets =
 		BreakableOptions = { "BreakableIdle1", "BreakableIdle2", "BreakableIdle3" },
 		BreakableValueOptions = { MaxHighValueBreakables = 3 },
 		SoftClamp = 0.75,
-		FishingPointChance = 0.07,
+		FishingPointChance = 1,
 		FishingPointRequirements =
 		{
 			RequiredCosmetics = { "FishingUnlockItem" },
-			RequiredMinRoomsSinceFishingPoint = 5,
+			RequiredMinRoomsSinceFishingPoint = 1,
 			RequiredAccumulatedMetaPoints = 1000,
 		},
 		EnterVoiceLines =

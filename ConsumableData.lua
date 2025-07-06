@@ -785,7 +785,9 @@ ConsumableData =
 		},
 		AddResources =
 		{
-			MetaPoints = 10,
+			-- MetaPoints = 10,
+			-- nma
+			MetaPoints = 100,
 		},
 		SpawnSound = "/SFX/Player Sounds/DarknessRewardDrop",
 		ConsumeSound = "/SFX/Player Sounds/DarknessCollectionPickup",

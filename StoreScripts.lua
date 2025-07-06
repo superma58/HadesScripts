@@ -370,12 +370,13 @@ function CheckChallengeSwitchItemValidity( currentRun )
 end
 
 function CheckForbiddenShopItem( eventSource, args )
-	local spawnOnId = GetClosest({ Id = CurrentRun.Hero.ObjectId, DestinationName = "ForbiddenShopItemSpawnPoint" })
-	if spawnOnId == nil or spawnOnId == 0 then
-		return
-	end
+	-- nma
+	-- local spawnOnId = GetClosest({ Id = CurrentRun.Hero.ObjectId, DestinationName = "ForbiddenShopItemSpawnPoint" })
+	-- if spawnOnId == nil or spawnOnId == 0 then
+	-- 	return
+	-- end
 
-	CurrentRun.ForbiddenShopItemOffered = true
+	-- CurrentRun.ForbiddenShopItemOffered = true
 
 	local consumableName = "ForbiddenShopItem"
 	local playerId = GetIdsByType({ Name = "_PlayerUnit" })

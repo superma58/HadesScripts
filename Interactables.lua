@@ -1381,7 +1381,10 @@ function AttemptRerollDoor( run, door )
 	end
 
 	run.CurrentRoom.DeferReward = false
-	room.ChosenRewardType = ChooseRoomReward( run, room, room.RewardStoreName, rewardsChosen, { IgnoreGameStateRequirements = true, } )
+	-- TODO: nma
+	-- room.ChosenRewardType = ChooseRoomReward( run, room, room.RewardStoreName, rewardsChosen, { IgnoreGameStateRequirements = true, } )
+	room.ChosenRewardType = ChooseRoomReward( run, room, room.RewardStoreName, rewardsChosen, { IgnoreGameStateRequirements = true, reroll = true, } )
+	
 	SetupRoomReward( run, room, rewardsChosen )
 	run.CurrentRoom.OfferedRewards[door.ObjectId] = { Type = room.ChosenRewardType, ForceLootName = room.ForceLootName, UseOptionalOverrides = room.UseOptionalOverrides }
 

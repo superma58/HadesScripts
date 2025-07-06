@@ -1393,9 +1393,18 @@ function GetRandomValue( tableArg, rng )
 	end
 
 	rng = rng or GetGlobalRng()
+	
+	-- nma
+	rng:Seed( math.floor(GetTime({}) * 1000000), 1)
 
 	local numItems = TableLength( tableArg )
 	local randomIndex = rng:Random( numItems )
+
+	-- nma
+	if NmaLog then
+		-- NmaLog("Random totle: " .. numItems .. " Result: " .. randomIndex)
+		-- NmaLog("Random Test:" .. rng:Random( numItems ) .. ' ' .. rng:Random( numItems ))
+	end
 
 	-- CollapseTable implicitly makes a shallow copy
 	local sortedTable = CollapseTableOrdered( tableArg )

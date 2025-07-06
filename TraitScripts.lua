@@ -1536,12 +1536,16 @@ function SetTransformingTraitsOnLoot( lootData, upgradeChoiceData )
 end
 
 function CalcNumLootChoices()
-	local numChoices = 3 - GetNumMetaUpgrades("ReducedLootChoicesShrineUpgrade")
+	-- local numChoices = 3 - GetNumMetaUpgrades("ReducedLootChoicesShrineUpgrade")
+	-- nma
+	local numChoices = 5 - GetNumMetaUpgrades("ReducedLootChoicesShrineUpgrade")
 	return numChoices
 end
 
 function GetTotalLootChoices()
-	return 3
+	-- return 3
+	-- nma
+	return 5
 end
 
 function SetTraitsOnLoot( lootData, args )

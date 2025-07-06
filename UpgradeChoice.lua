@@ -82,6 +82,10 @@ end
 
 function CreateBoonLootButtons( lootData, reroll)
 
+	-- nma
+	local extraLoot = 2
+	local fractionRate = 3 / (3+extraLoot + 0.1)
+
 	local components = ScreenAnchors.ChoiceScreen.Components
 	local upgradeName = lootData.Name
 	local upgradeChoiceData = LootData[upgradeName]
@@ -153,10 +157,16 @@ function CreateBoonLootButtons( lootData, reroll)
 	for itemIndex, itemData in ipairs( upgradeOptions ) do
 		local itemBackingKey = "Backing"..itemIndex
 		components[itemBackingKey] = CreateScreenComponent({ Name = "TraitBacking", Group = "Combat_Menu", X = ScreenCenterX, Y = itemLocationY })
-		SetScaleY({ Id = components[itemBackingKey].Id, Fraction = 1.25 })
+		-- SetScaleY({ Id = components[itemBackingKey].Id, Fraction = 1.25 })
+		-- nma
+		SetScaleY({ Id = components[itemBackingKey].Id, Fraction = 1 * fractionRate })
 		local upgradeData = nil
 		local upgradeTitle = nil
 		local upgradeDescription = nil
+		-- nma
+		if (NmaLog) then
+			NmaLog('Render boon description: '.. tostring(itemData.Type) .. ',' .. tostring(itemData.Rarity) .. ',' .. tostring(itemData.ItemName) .. ',' .. tostring(HeroHasTrait(itemData.ItemName)))
+		end
 		if itemData.Type == "Trait" then
 			upgradeData = GetProcessedTraitData({ Unit = CurrentRun.Hero, TraitName = itemData.ItemName, Rarity = itemData.Rarity })
 			local traitNum = GetTraitCount(CurrentRun.Hero, upgradeData)
@@ -276,18 +286,31 @@ function CreateBoonLootButtons( lootData, reroll)
 		local exchangeIconPrefix = nil
 		local overlayLayer = "Combat_Menu_Overlay_Backing"
 
-		components[purchaseButtonKey] = CreateScreenComponent({ Name = "BoonSlot"..itemIndex, Group = "Combat_Menu", Scale = 1, X = itemLocationX + buttonOffsetX, Y = itemLocationY })
+		-- components[purchaseButtonKey] = CreateScreenComponent({ Name = "BoonSlot"..itemIndex, Group = "Combat_Menu", Scale = 1 * fractionRate, X = itemLocationX + buttonOffsetX, Y = itemLocationY })
+		-- nma
+		components[purchaseButtonKey] = CreateScreenComponent({ Name = "BoonSlot"..RandomInt( 1, 3 ), Group = "Combat_Menu", Scale = 1 * fractionRate, X = itemLocationX + buttonOffsetX, Y = itemLocationY })
+		
+		-- nma
+		if (NmaLog) then
+			NmaLog('Render boon: '.. tostring(upgradeData.CustomRarityColor) .. ',' .. tostring(upgradeData) .. ',' .. tostring(upgradeTitle) .. ',' .. tostring(upgradeDescription))
+		end
+
 		if upgradeData.CustomRarityColor then
-			components[purchaseButtonKey.."Patch"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX + 38, Y = iconOffsetY + itemLocationY })
+			components[purchaseButtonKey.."Patch"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX + 38, Y = iconOffsetY * fractionRate + itemLocationY, Scale = fractionRate })
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."Patch"].Id, Name = "BoonRarityPatch"})
 			SetColor({ Id = components[purchaseButtonKey.."Patch"].Id, Color = upgradeData.CustomRarityColor })
 		elseif itemData.Rarity ~= "Common" then
-			components[purchaseButtonKey.."Patch"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX + 38, Y = iconOffsetY + itemLocationY })
+			components[purchaseButtonKey.."Patch"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX + 38, Y = iconOffsetY * fractionRate + itemLocationY, Scale = fractionRate })
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."Patch"].Id, Name = "BoonRarityPatch"})
 			SetColor({ Id = components[purchaseButtonKey.."Patch"].Id, Color = Color["BoonPatch" .. itemData.Rarity] })
 		end
 
 		if Contains( blockedIndexes, itemIndex ) then
+			-- nma
+			if (NmaLog) then
+				NmaLog('blockedIndexes: yes')
+			end
+
 			itemData.Blocked = true
 			overlayLayer = "Combat_Menu"
 			UseableOff({ Id = components[purchaseButtonKey].Id })
@@ -298,13 +321,15 @@ function CreateBoonLootButtons( lootData, reroll)
 			Color = Color.Transparent,
 			Width = 675,
 			})
-			thread( TraitLockedPresentation, { Components = components, Id = purchaseButtonKey, OffsetX = itemLocationX + buttonOffsetX, OffsetY = iconOffsetY + itemLocationY } )
+			thread( TraitLockedPresentation, { Components = components, Id = purchaseButtonKey, OffsetX = itemLocationX + buttonOffsetX, OffsetY = iconOffsetY * fractionRate + itemLocationY, Scale = fractionRate } )
 		end
 
 		if upgradeData.Icon ~= nil then
-			components[purchaseButtonKey.."Icon"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX, Y = iconOffsetY + itemLocationY })
+			components[purchaseButtonKey.."Icon"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX, Y = iconOffsetY * fractionRate + itemLocationY, Scale = fractionRate })
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."Icon"].Id, Name = upgradeData.Icon .. "_Large" })
-			SetScale({ Id = components[purchaseButtonKey.."Icon"].Id, Fraction = 0.85 })
+			-- SetScale({ Id = components[purchaseButtonKey.."Icon"].Id, Fraction = 0.85 })
+			-- nma
+			SetScale({ Id = components[purchaseButtonKey.."Icon"].Id, Fraction = 0.85 * fractionRate })
 		end
 
 		if upgradeData.TraitToReplace ~= nil then
@@ -316,10 +341,10 @@ function CreateBoonLootButtons( lootData, reroll)
 				blockedIconOffset = -20
 			end
 
-			components[purchaseButtonKey.."ExchangeIcon"] = CreateScreenComponent({ Name = "BlankObstacle", Group = overlayLayer, X = iconOffsetX + itemLocationX + buttonOffsetX + xOffset, Y = iconOffsetY + itemLocationY + yOffset + blockedIconOffset})
+			components[purchaseButtonKey.."ExchangeIcon"] = CreateScreenComponent({ Name = "BlankObstacle", Group = overlayLayer, X = iconOffsetX + itemLocationX + buttonOffsetX + xOffset, Y = iconOffsetY * fractionRate + itemLocationY + yOffset * fractionRate + blockedIconOffset * fractionRate, Scale = fractionRate})
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."ExchangeIcon"].Id, Name = TraitData[upgradeData.TraitToReplace].Icon .. "_Small" })
 
-			components[purchaseButtonKey.."ExchangeIconFrame"] = CreateScreenComponent({ Name = "BlankObstacle", Group = overlayLayer, X = iconOffsetX + itemLocationX + buttonOffsetX + xOffset, Y = iconOffsetY + itemLocationY + yOffset + blockedIconOffset})
+			components[purchaseButtonKey.."ExchangeIconFrame"] = CreateScreenComponent({ Name = "BlankObstacle", Group = overlayLayer, X = iconOffsetX + itemLocationX + buttonOffsetX + xOffset, Y = iconOffsetY * fractionRate + itemLocationY + yOffset * fractionRate + blockedIconOffset * fractionRate, Scale = fractionRate})
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."ExchangeIconFrame"].Id, Name = "BoonIcon_Frame_".. itemData.OldRarity})
 
 			exchangeIconPrefix = "{!Icons.TraitExchange} "
@@ -354,13 +379,17 @@ function CreateBoonLootButtons( lootData, reroll)
 
 		end
 
-		components[purchaseButtonKey.."Frame"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX, Y = iconOffsetY + itemLocationY })
+		components[purchaseButtonKey.."Frame"] = CreateScreenComponent({ Name = "BlankObstacle", Group = "Combat_Menu", X = iconOffsetX + itemLocationX + buttonOffsetX, Y = iconOffsetY * fractionRate + itemLocationY, Scale = fractionRate })
 		if upgradeData.Frame then
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."Frame"].Id, Name = "Frame_Boon_Menu_".. upgradeData.Frame})
-			SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 })
+			-- SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 })
+			-- nma
+			SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 * fractionRate })
 		else
 			SetAnimation({ DestinationId = components[purchaseButtonKey.."Frame"].Id, Name = "Frame_Boon_Menu_".. itemData.Rarity})
-			SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 })
+			-- SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 })
+			-- nma
+			SetScale({ Id = components[purchaseButtonKey.."Frame"].Id, Fraction = 0.85 * fractionRate })
 		end
 		-- Button data setup
 		components[purchaseButtonKey].OnPressedFunctionName = "HandleUpgradeChoiceSelection"
@@ -479,7 +508,7 @@ function CreateBoonLootButtons( lootData, reroll)
 			firstOption = false
 		end
 
-		itemLocationY = itemLocationY + 220
+		itemLocationY = itemLocationY + 220 * fractionRate
 	end
 
 
@@ -536,6 +565,8 @@ function DestroyBoonLootButtons( lootData )
 	local components = ScreenAnchors.ChoiceScreen.Components
 	local toDestroy = {}
 	for index = 1, 3 do
+	-- nma
+	-- for index = 1, 4 do
 		local destroyIndexes = {
 		"PurchaseButton"..index,
 		"PurchaseButton"..index.. "Lock",
@@ -1045,7 +1076,9 @@ function LogUpgradeChoice( button )
 	table.insert( CurrentRun.LootChoiceHistory, data )
 end
 
-OnMouseOver{ "BoonSlot1 BoonSlot2 BoonSlot3",
+-- OnMouseOver{ "BoonSlot1 BoonSlot2 BoonSlot3",
+	-- nma
+OnMouseOver{ "BoonSlot1 BoonSlot2 BoonSlot3 BoonSlot4",
 	function( triggerArgs )
 		if triggerArgs.triggeredById == nil or not IsScreenOpen("BoonMenu") or ScreenAnchors.ChoiceScreen == nil or ScreenAnchors.ChoiceScreen.Components[ triggerArgs.triggeredById ] == nil then
 			return
@@ -1058,7 +1091,9 @@ OnMouseOver{ "BoonSlot1 BoonSlot2 BoonSlot3",
 	end
 }
 
-OnMouseOff{ "BoonSlot1 BoonSlot2 BoonSlot3",
+-- OnMouseOff{ "BoonSlot1 BoonSlot2 BoonSlot3",
+	-- nma
+OnMouseOff{ "BoonSlot1 BoonSlot2 BoonSlot3 BoonSlot4",
 	function( triggerArgs )
 		if IsScreenOpen("BoonMenu") then
 			local key = ScreenAnchors.ChoiceScreen.Components[ triggerArgs.triggeredById ]

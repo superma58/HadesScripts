@@ -371,12 +371,12 @@ end
 
 function CheckForbiddenShopItem( eventSource, args )
 	-- nma
-	-- local spawnOnId = GetClosest({ Id = CurrentRun.Hero.ObjectId, DestinationName = "ForbiddenShopItemSpawnPoint" })
-	-- if spawnOnId == nil or spawnOnId == 0 then
-	-- 	return
-	-- end
+	local spawnOnId = GetClosest({ Id = CurrentRun.Hero.ObjectId, DestinationName = "ForbiddenShopItemSpawnPoint" })
+	if spawnOnId == nil or spawnOnId == 0 then
+		return
+	end
 
-	-- CurrentRun.ForbiddenShopItemOffered = true
+	CurrentRun.ForbiddenShopItemOffered = false
 
 	local consumableName = "ForbiddenShopItem"
 	local playerId = GetIdsByType({ Name = "_PlayerUnit" })

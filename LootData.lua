@@ -20045,7 +20045,20 @@ LootData =
 			"SwordHeavySecondStrikeTrait", "SwordThrustWaveTrait", "SwordHealthBufferDamageTrait", "SwordDoubleDashAttackTrait", "SwordCriticalTrait", "SwordCursedLifeStealTrait",
 			
 
-			"BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait",
+			-- "BowDoubleShotTrait", "BowLongRangeDamageTrait", "BowSlowChargeDamageTrait", "BowTapFireTrait", "BowPenetrationTrait", "BowPowerShotTrait", "BowSecondaryBarrageTrait", "BowTripleShotTrait", "BowSecondaryFocusedFireTrait", "BowChainShotTrait", "BowCloseAttackTrait", "BowConsecutiveBarrageTrait",
+			-- "BowDoubleShotTrait", -- 双箭并进
+			-- "BowLongRangeDamageTrait", -- 百步穿杨
+			-- "BowSlowChargeDamageTrait", -- 爆裂之箭
+			-- "BowTapFireTrait", -- 连珠箭发 按住普通攻击即可快速射击, 但不再能强力攻击
+			"BowPenetrationTrait", -- 透甲排箭 特殊攻击可以穿透敌人, 并对护甲造成 +400%伤害
+			"BowPowerShotTrait", -- 箭无虚发 强力攻击的判定时间更宽松, 且造成的伤害+150%
+			"BowSecondaryBarrageTrait", -- 箭如雨下  特殊攻击射出的箭矢数目 +4
+			-- "BowTripleShotTrait", -- 一箭三矢 
+			"BowSecondaryFocusedFireTrait", -- 蓄力排箭 长按特殊攻击蓄力, 基础伤害最高可达 +250%。射程改由蓄力程度决定
+			"BowChainShotTrait", -- 连锁射击
+			-- "BowCloseAttackTrait", -- 近身透射 普通攻击对近距离的敌人造成伤害 +150%
+			"BowConsecutiveBarrageTrait", -- 致命齐射 特殊攻击每连续击中敌人一次, 都可造成+3基础伤害
+
 			"ShieldDashAOETrait", "ShieldRushProjectileTrait", "ShieldThrowFastTrait", "ShieldThrowCatchExplode", "ShieldChargeHealthBufferTrait", "ShieldChargeSpeedTrait", "ShieldBashDamageTrait", "ShieldPerfectRushTrait", "ShieldThrowElectiveCharge", "ShieldThrowEmpowerTrait", "ShieldBlockEmpowerTrait", "ShieldThrowRushTrait",
 			
 			-- nma
@@ -20059,7 +20072,12 @@ LootData =
 			
 			"FistReachAttackTrait", "FistDashAttackHealthBufferTrait", "FistTeleportSpecialTrait", "FistDoubleDashSpecialTrait", "FistChargeSpecialTrait", "FistKillTrait", "FistSpecialLandTrait", "FistAttackFinisherTrait", "FistConsecutiveAttackTrait", "FistSpecialFireballTrait", "FistAttackDefenseTrait", "FistHeavyAttackTrait",
 
-			"SpearSpinTravelDurationTrait", "SwordConsecrationBoostTrait", "BowBondBoostTrait", "ShieldLoadAmmoBoostTrait", "FistDetonateBoostTrait",
+			-- "SpearSpinTravelDurationTrait", "SwordConsecrationBoostTrait", "BowBondBoostTrait", "ShieldLoadAmmoBoostTrait", "FistDetonateBoostTrait",
+			"SpearSpinTravelDurationTrait",
+			"SwordConsecrationBoostTrait",
+			"BowBondBoostTrait", --脉冲射击 天神之弓沙兰伽普通攻击可以在你周围产生一道冲击波
+			"ShieldLoadAmmoBoostTrait",
+			"FistDetonateBoostTrait",
 
 			"GunLoadedGrenadeBoostTrait", "GunLoadedGrenadeLaserTrait", "GunLoadedGrenadeSpeedTrait", "GunLoadedGrenadeWideTrait", "GunLoadedGrenadeInfiniteAmmoTrait",
 		},
